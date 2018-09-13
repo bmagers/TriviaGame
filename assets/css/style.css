@@ -1,10 +1,47 @@
 body {
-    font-family: sans-serif;
+    background-image: url("../images/question-marks-background-5049.jpeg");
+    background-size: cover;
+    font-family: 'Permanent Marker', cursive;
+}
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    color: yellow;
+    text-align: center;
+}
+
+#question {
+    border: 1px solid green;
+    background-color: lightblue;
+    margin: 5px;
+    padding: 20px;
+    font-size: x-large;
+    text-align: center;
 }
 
 .answer {
     border: 1px solid red;
+    background-color: burlywood;
     margin: 5px;
     padding: 10px;
     font-size: larger;
+    text-align: center;
+}
+
+.incorrectAnswer {
+    background-color: red;
+}
+
+.correctAnswer {
+    background-color: greenyellow;
+}
+
+#timer {
+    border: 1px solid green;
+    background-color: aquamarine;
+    margin: 5px;
+    padding: 10px;
+    font-size: larger;
+    text-align: center;
 }
