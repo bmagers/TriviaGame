@@ -12,31 +12,14 @@ $(document).ready(function() {
         method: "GET"
     }).then(function(response) {
         var questions = response.results;
-        console.log(questions);
 
         function askQuestion() {
 
             if (current < 10) {
 
-                secondsLeft = 15;
-
-                interval = setInterval(function() {     
-                    if (secondsLeft === 0) {
-                        timeoutAnswers++;
-                        $("#timer").text("Time's up!");
-                        clearInterval(interval);
-                        current++;
-                        askQuestion();
-                    } else {
-                        $("#timer").text(secondsLeft + " seconds left");
-                        secondsLeft--;
-                    }
-                }, 1000);
-
                 var category = $("<p>").addClass("category").html(questions[current].category);
                 var question = $("<h2>").html(questions[current].question);
                 $("#question").empty().append(category).append(question);
-        
                 var answers = questions[current].incorrect_answers;
                 var correctAnswer = questions[current].correct_answer;
                 answers.push(correctAnswer);
@@ -45,19 +28,39 @@ $(document).ready(function() {
                     var newDiv = $("<div>").addClass("answer").html(value);
                     if (value === correctAnswer) {
                         newDiv.attr("id", "correctAnswer");
-                        console.log("correct answer is " + value);
                     }
                     $("#question").append(newDiv);
                 });
+                secondsLeft = 15;
+
+                interval = setInterval(function() {     
+                    if (secondsLeft === 0) {
+                        timeoutAnswers++;
+                        $("#missed").html("Missed: " + timeoutAnswers);
+                        $("#timer").text("Time's up!");
+                        clearInterval(interval);
+                        $("#correctAnswer").addClass("correctAnswer");
+                        setTimeout(function() {
+                            current++;
+                            askQuestion();
+                        }, 4000)
+                    } else {
+                        $("#timer").text(secondsLeft + " seconds left");
+                        secondsLeft--;
+                    }
+                }, 1000);
+
                 $(".answer").on("click", function() {
                     clearInterval(interval);
                     $(".answer").off("click"); 
                     if (this.id === "correctAnswer") {
                         rightAnswers++;
+                        $("#right").html("Right: " + rightAnswers);
                         $("#timer").text("RIGHT");
                         $(this).addClass("correctAnswer");
                     } else {
                         wrongAnswers++;
+                        $("#wrong").html("Wrong: " + wrongAnswers);
                         $("#timer").text("WRONG");
                         $(this).addClass("incorrectAnswer");
                         setTimeout(function() {
@@ -69,14 +72,14 @@ $(document).ready(function() {
                         askQuestion();
                     }, 4000);
                 });
+
             } else {
-                $("#timer").text("No more questions.");
+
+                $("#timer").text("Thanks for playing!");
+                
             }
-
         }
-
         askQuestion();
-
     });
 
 });

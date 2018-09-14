@@ -1,6 +1,6 @@
 body {
     background-image: url("../images/question-marks-background-5049.jpeg");
-    background-size: cover;
+    background-size: auto;
     font-family: 'Permanent Marker', cursive;
 }
 
@@ -24,6 +24,7 @@ h1 {
 #question {
     border: 1px solid green;
     background-color: lightblue;
+    opacity: 0.9;
     margin: 5px;
     padding: 15px;
     font-size: x-large;
@@ -50,8 +51,20 @@ h1 {
 #timer {
     border: 1px solid green;
     background-color: aquamarine;
+    opacity: 0.9;
     margin: 5px;
     padding: 15px;
     font-size: larger;
     text-align: center;
+}
+
+#score {
+    border: 1px solid darkslategrey;
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: 80px;
+    height: 70px;
+    margin: 5px;
+    padding: 20px;
 }
