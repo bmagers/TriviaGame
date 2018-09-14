@@ -33,7 +33,7 @@ $(document).ready(function() {
                     }
                 }, 1000);
 
-                var category = $("<p>").html("Category: " + questions[current].category);
+                var category = $("<p>").addClass("category").html(questions[current].category);
                 var question = $("<h2>").html(questions[current].question);
                 $("#question").empty().append(category).append(question);
         
